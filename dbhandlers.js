@@ -4,8 +4,8 @@ var Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
 
 //setting up schemas...
 var User = new Schema({
-	username: {type: String, validate [validate, 'Please enter a Username greater than 8 characters'], index {unique: true }},
-	password: {type: String, validate [validate, 'Plase enter a Password greater than 8 characters']},
+	username: {type: String, validate: [validate, 'Please enter a Username greater than 8 characters'], index {unique: true }},
+	password: {type: String, validate: [validate, 'Plase enter a Password greater than 8 characters']},
 	wins: {type: Number, default: 0},
 	losses: {type: Number, default: 0},
 	ranking: {type: Number, default: 1000, index: -1},
