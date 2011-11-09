@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect(process.env.databaseURL);
+mongoose.connect("mongodb://heroku_app1738240:998urnbp6clj8im226t6e1236s@dbh74.mongolab.com:27747/heroku_app1738240");
 var Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
 
 //setting up schemas...
@@ -86,7 +86,7 @@ MatchProvider.prototype.save = function(params, callback) {
 
 //Just some validate functions for the databases.
 function validate(value) {
-	return value && value.length >= 8;
+	return value && (value.length >= 8);
 }
 function validateEmail(value) {
 	var emailRegex = new RegExp(/[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/);
