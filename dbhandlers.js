@@ -17,7 +17,7 @@ var User = new Schema({
 var Match = new Schema({
 	winner: String,
 	loser: String
-	date: {type Date, default: Date.now}
+	date: {type Date: default: Date.now}
 });
 
 //setting up mongoose stuff
