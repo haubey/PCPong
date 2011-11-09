@@ -1,0 +1,55 @@
+.pills .active a{background:#0366CF;color:#ffffff;}
+
+.pills a:hover {
+  background: #0366CF;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.nav {	width: 940px; margin-left: auto; margin-right: auto;}
+a { color: black; text-decoration:none;}
+a:hover{color: #00438A; text-decoration:none;}
+.pills{width: 940px;margin-left: auto;margin-right: auto;}
+.disabled:hover{text-shadow: 0.1em 0.1em 0.2em black}
+
+body { padding-top: 5%;}
+
+/* For the "inset" look only */
+/*html {
+    overflow: auto;
+}*/
+
+
+.hero-unit {
+	height: 300px;
+	overflow-y: hidden;
+}
+.hero-unit:hover {
+	overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    width: 6px;
+}
+ 
+/* Track 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}*/
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: grey; 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(200,200,200,0.4); 
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(200,200,200,0.4); 
+}
