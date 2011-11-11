@@ -37,7 +37,7 @@ app.configure('production', function () {
 app.get('/', function (req, res) {
 		var user = new User();
 		var er, users;
-		user.findAll(defer(er, users);
+		user.findAll(defer(er, users));
 		console.log(users);
     //res.render('home', {
       //  layout: false,
