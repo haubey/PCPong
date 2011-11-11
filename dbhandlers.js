@@ -31,7 +31,7 @@ UserProvider = function(){};
 UserProvider.prototype.findAll = function(callback) {
 	User.find({}, function(err, users) {
 		//users is [user, user2...]
-		return users;
+		callback(null, users)
 	});
 };
 

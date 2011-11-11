@@ -36,14 +36,10 @@
         app.get('/', function (req, res) {
             var user = new User();
             var er, users;
-            var users = user.findAll();
-            res.render('home', {
-            		locals: {
-            			users: users
-            		},
-            		title: "Hey"
-							})
-						})
+            user.findAll(function(err, users) {
+            	res.send(users)
+            });
+					});
 					
 
         app.get('/about', function (req, res) {
