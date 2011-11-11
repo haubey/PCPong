@@ -35,17 +35,17 @@ app.configure('production', function () {
 // Routes
 app.get('/', function (req, res) {
 		var user = new User();
-		var users = 
+		var users;
 		user.findAll(function(err, inU) {
 				users = inU;
-			}
-		);
+		});
     res.render('home', {
         layout: false,
         locals: {
         	users: users
     }
 	});
+});
 
 app.get('/about', function (req, res) {
     res.render('about', {
