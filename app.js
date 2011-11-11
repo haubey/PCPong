@@ -35,13 +35,15 @@ app.configure('production', function () {
 // Routes
 app.get('/', function (req, res) {
 		var user = new User();
-		var users = user.findAll(
-			function(err, users) {
-				console.log(users);
+		var users = 
+		user.findAll(function(err, inU) {
+				users = inU;
 			}
 		);
     res.render('home', {
-        layout: false
+        layout: false,
+        locals: {
+        	users: users
     })
 });
 

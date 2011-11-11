@@ -9,7 +9,8 @@ html(lang="en")
 	body
 		.container
 			#rankings.
-				| Hey, Sup
+				for user in users
+					p user.name
 			#recent.content
 				| Hey sup again!
 			footer
