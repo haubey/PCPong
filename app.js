@@ -43,7 +43,7 @@ app.get('/', function (req, res) {
       //  layout: false,
        // users: users
 	//});
-	res.end(users);
+	res.send(users);
 });
 
 app.get('/about', function (req, res) {
