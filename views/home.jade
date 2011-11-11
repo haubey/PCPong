@@ -9,8 +9,8 @@ html(lang="en")
 	body
 		.container
 			#rankings
-				//for user in users
-				//	p #{user.name}
+				- each user in users
+					p= user.name
 				#{users}
 				p USERS
 			#recent.content

@@ -37,7 +37,10 @@
             var user = new User();
             var er, users;
             user.findAll(function(err, users) {
-            	res.send(users)
+            	res.render('home', {
+            		layout: false,
+            		users: users
+            	});
             });
 					});
 					
