@@ -5,6 +5,7 @@ var express = require('express'),
     routes = require('./routes'),
     User = require('./dbhandlers').UserProvider,
     Match = require('./dbhandlers').MatchProvider;
+require('tamejs');
 
 var app = module.exports = express.createServer();
 
@@ -35,10 +36,9 @@ app.configure('production', function () {
 // Routes
 app.get('/', function (req, res) {
 		var user = new User();
-		var users;
-		user.findAll(function(err, inU) {
-				users = inU;
-		});
+		var er, users;
+		user.findAll(defer(er, users);
+		console.log(users);
     //res.render('home', {
       //  layout: false,
        // users: users
