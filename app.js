@@ -1,12 +1,8 @@
-var tame = require('tamejs').runtime;
-var __tame_defer_cb = null;
-var __tame_fn_0 = function (__tame_k) {
-        tame.setActiveCb(__tame_defer_cb);
+
         var express = require('express'),
             routes = require('./routes'),
             User = require('./dbhandlers').UserProvider,
             Match = require('./dbhandlers').MatchProvider;
-        require('tamejs');
 
         var app = module.exports = express.createServer();
 
@@ -40,23 +36,15 @@ var __tame_fn_0 = function (__tame_k) {
         app.get('/', function (req, res) {
             var user = new User();
             var er, users;
-            user.findAll(
-            __tame_defers.defer({
-                assign_fn: function () {
-                    er = arguments[0];
-                    users = arguments[1];
-                },
-                parent_cb: __tame_defer_cb,
-                line: 40,
-                file: "app.js"
-            }));
-            console.log(users);
-
-
-
-
-            res.send(users);
-        });
+            var users = user.findAll();
+            res.render('home', {
+            		locals: {
+            			users: users
+            		},
+            		title: "Hey"
+							})
+						})
+					
 
         app.get('/about', function (req, res) {
             res.render('about', {
@@ -86,7 +74,3 @@ var __tame_fn_0 = function (__tame_k) {
 
         app.listen(process.env.PORT || 3000);
         console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
-        tame.callChain([__tame_k]);
-        tame.setActiveCb(null);
-    };
-__tame_fn_0(tame.end);
