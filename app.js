@@ -39,12 +39,11 @@ app.get('/', function (req, res) {
 		user.findAll(function(err, inU) {
 				users = inU;
 		});
-    res.render('home', {
-        layout: false,
-        locals: {
-        	users: users
-    }
-	});
+    //res.render('home', {
+      //  layout: false,
+       // users: users
+	//});
+	res.end(users);
 });
 
 app.get('/about', function (req, res) {
