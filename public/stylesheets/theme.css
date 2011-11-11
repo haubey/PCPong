@@ -22,7 +22,6 @@ body { padding-top: 5%;}
 
 
 .hero-unit {
-	height: 300px;
 	overflow-y: hidden;
 }
 .hero-unit:hover {

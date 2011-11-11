@@ -4,13 +4,13 @@ var Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
 
 //setting up schemas...
 var User = new Schema({
-	username: {type: String, validate: [validate, 'Please enter a Username greater than 8 characters'], index: {unique: true }},
-	password: {type: String, validate: [validate, 'Plase enter a Password greater than 8 characters']},
+	username: {type: String, validate: [validate, 'Please enter a Username'], index: {unique: true }},
+	password: {type: String, validate: [validate, 'Plase enter a Password']},
 	wins: {type: Number, default: 0},
+	email: {type: String, validate: [validateEmail, 'Please enter a valid email.']},
 	losses: {type: Number, default: 0},
 	ranking: {type: Number, default: 1000, index: -1},
-	firstName: String,
-	lastName: String,
+	name: String,
 	uid: ObjectId
 });
 
@@ -55,13 +55,16 @@ UserProvider.prototype.update = function(id, wins, losses, callback) {
 };
 
 UserProvider.prototype.save = function(params, callback) {
+	console.log(params.password);
+	console.log(params.username);
 	var user = new User({
-		firstName: params.firstName,
-		lastName: params.lastName,
+		name: params.name,
 		username: params.username,
-		password: params.password
+		password: params.password,
+		email: params.email
 	});
 	user.save(function(err) {
+		if(err) console.log(err);
 		callback();
 	});
 }
@@ -86,7 +89,7 @@ MatchProvider.prototype.save = function(params, callback) {
 
 //Just some validate functions for the databases.
 function validate(value) {
-	return value && (value.length >= 8);
+	return value && value.length;
 }
 function validateEmail(value) {
 	var emailRegex = new RegExp(/[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/);
