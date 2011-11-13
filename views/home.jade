@@ -16,7 +16,7 @@ html(lang="en")
 				li
 					a(href='#matches') Matches
 				li
-					a(href='#newmatch') New Match
+					a(href='#newmatch') Enter Match
 			.pill-content
 				#rankings.active
 					each user, i in users
@@ -25,10 +25,33 @@ html(lang="en")
 								.rank= i+1
 								.name= user.name
 								.record #{user.wins}-#{user.losses}
-				#matches Hey Hi my names' max.
-				#newmatch Hey
-					
-				
+				#matches Coming Soon.
+				#newmatch.row
+					h2(style="text-align: center") Enter a Match
+					form#newUser
+						.span8
+							h3(style="text-align: center") Winner
+							.clearfix
+								label(for="wuser") Username
+								.input
+									input(type="text", name="wuser", id="wuser")
+							.clearfix
+								label(for="wpass") Password
+								.input
+									input(type="password", name="wpass", id="wpass")
+						.span8
+							h3(style="text-align: center") Loser
+							.clearfix
+								label(for="luser") Username
+								.input
+									input(type="text", id="luser", name="luser")
+							.clearfix
+								label(for="lpass") Password
+								.input
+									input(type="password", name="lpass", id="lpass")
+					button(id="enterMatch", style="margin-left:20px;").btn.primary.large.disabled Enter Match
+					br
+					br
 			footer
 				p 
 					| &copy; Haubey Apps 2011
