@@ -33,12 +33,16 @@ app.configure('production', function () {
 
 app.get('/', function (req, res) {
   var user = new User();
+  var match = new Match();
  	user.findAll(function(err, users) {
-  	res.render('home', {
-    	layout: false,
-      users: users
-   	});
- 	});
+ 		match.findAll(function(er, matches) {
+  		res.render('home', {
+    		layout: false,
+      	users: users,
+    		matches: matches
+   		});
+		});
+	});
 });
 
 
@@ -80,6 +84,26 @@ app.get('/u/:un', function(req, res) {
 app.post('/m', function (req, res) {
 	//have to figure out way of getting all users and stuff without callbacks
 	//but until then...
+	var user = new User();
+	user.findUser({username: req.params.wuser, password: req.params.wpass}, function(e, u) {
+		if(e) {//implement error handling with 401s and stuff....
+		}
+		else {
+			user.update({username: req.params.wuser}, true, function(u) {});
+			user.findUser({username: req.params.luser, password: req.params.lpass}, function(le, lu) {
+				if(e) {//implement error handling with 401s and stuff....
+				}
+				else {
+					user.update({username: req.params.luser}, false, function(u) {});
+					var match = new Match();
+					match.save({
+						winUser: u.name,
+						loseName: lu.name
+					});
+				}
+			})
+		}
+	});
 });
 
 app.listen(process.env.PORT || 3000);

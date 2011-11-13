@@ -7,6 +7,8 @@ html(lang="en")
 		link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
 		link(rel='stylesheet', href='/stylesheets/theme.css')
 		script(src='/javascripts/jquery.min.js')
+		script(src='/javascripts/sha256.js')
+		script(src='/javascripts/ajaxhandler.js')
 		script(src='/javascripts/tabs.js')
 	body
 		.container
@@ -25,7 +27,11 @@ html(lang="en")
 								.rank= i+1
 								.name= user.name
 								.record #{user.wins}-#{user.losses}
-				#matches Coming Soon.
+				#matches 
+					each match in matches
+						.usr
+							.name #{match.winner} defeated #{match.loser}
+							.record #{match.date}
 				#newmatch.row
 					h2(style="text-align: center") Enter a Match
 					form#newUser

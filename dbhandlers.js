@@ -9,7 +9,7 @@ var User = new Schema({
 	wins: {type: Number, default: 0},
 	email: {type: String, validate: [validateEmail, 'Please enter a valid email.']},
 	losses: {type: Number, default: 0},
-	ranking: {type: Number, default: 0, index: -1},
+	points: {type: Number, default: 0, index: -1},
 	name: String,
 	uid: ObjectId
 });
@@ -17,7 +17,7 @@ var User = new Schema({
 var Match = new Schema({
 	winner: String,
 	loser: String,
-	date: {type: Date, default: Date.now}
+	date: {type: Date, default: Date.now, index: 1}
 });
 
 //setting up mongoose stuff
@@ -31,7 +31,7 @@ UserProvider = function(){};
 UserProvider.prototype.findAll = function(callback) {
 	User.find({}, function(err, users) {
 		//users is [user, user2...]
-		callback(null, users)
+		callback(err, users)
 	});
 };
 
@@ -48,11 +48,15 @@ UserProvider.prototype.findById = function(id, callback) {
 	});
 };
 
-UserProvider.prototype.update = function(id, wins, losses, callback) {
-	User.findById(id, function(err, user) {
+UserProvider.prototype.update = function(params,win, callback) {
+	User.findOne(params, function(err, user) {
 		if(!err) {
-			user.wins = wins;
-			user.losses = losses;
+			if(win) {
+				user.wins++;
+				user.points+=2;
+			} else {
+				user.losses++
+			}
 			user.save(function (err) {
 				callback();
 			});
