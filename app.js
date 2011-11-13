@@ -57,6 +57,7 @@ app.get('/u/new', function (req, res) {
 app.post('/u/new', function (req, res) {
     console.log(req.body.pass);
     var user = new User();
+    if(req.body.masspass == "bedspread") {
     user.save({
         name: req.body.name,
         username: req.body.user,
@@ -65,6 +66,7 @@ app.post('/u/new', function (req, res) {
     }, function () {
         res.send("Awesomesauce");
     });
+    }
 });
 
 app.get('/u/:un', function(req, res) {

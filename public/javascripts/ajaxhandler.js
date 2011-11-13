@@ -15,7 +15,8 @@ function senddata() {
 			pass: pw,
 			name: $('#name').val(),
 			user: $('#user').val(),
-			email: $('#email').val()
+			email: $('#email').val(),
+			masspass: $('#masspass').val()
 		},
 		success: function() {alert("Hello");},
 	});
