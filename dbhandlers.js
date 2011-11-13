@@ -9,7 +9,7 @@ var User = new Schema({
 	wins: {type: Number, default: 0},
 	email: {type: String, validate: [validateEmail, 'Please enter a valid email.']},
 	losses: {type: Number, default: 0},
-	ranking: {type: Number, default: 1000, index: -1},
+	ranking: {type: Number, default: 0, index: -1},
 	name: String,
 	uid: ObjectId
 });
@@ -34,6 +34,12 @@ UserProvider.prototype.findAll = function(callback) {
 		callback(null, users)
 	});
 };
+
+UserProvider.prototype.findUser = function(params, callback) {
+	User.findOne(params, function(err, user) {
+		callback(null, user);
+	});
+}
 
 UserProvider.prototype.findById = function(id, callback) {
 	User.findById(id, function(err, user) {

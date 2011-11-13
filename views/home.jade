@@ -4,17 +4,33 @@ html(lang="en")
 		title PC Pong
 		//[if lt IE 9]
 			script(src='http://html5.shim.googlecode.com/svn/trunk/html5.js')
-		link(rel='stylesheet', href='http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
 		link(rel='stylesheet', href='/stylesheets/theme.css')
+		script(src='/javascripts/jquery.min.js')
+		script(src='/javascripts/tabs.js')
 	body
 		.container
-			#rankings
-				- each user in users
-					p= user.name
-				#{users}
-				p USERS
-			#recent.content
-				| Hey sup again!
+			ul.pills.navi(data-pills="pills")
+				li.active
+					a(href='#rankings') Rankings
+				li
+					a(href='#matches') Matches
+				li
+					a(href='#newmatch') New Match
+			.pill-content
+				#rankings.active
+					each user, i in users
+						a(href= /u/ + user.username)
+							.usr
+								.rank= i+1
+								.name= user.name
+								.record #{user.wins}-#{user.losses}
+				#matches Hey Hi my names' max.
+				#newmatch Hey
+					
+				
 			footer
 				p 
 					| &copy; Haubey Apps 2011
+		script
+			$('.pills').pills();
