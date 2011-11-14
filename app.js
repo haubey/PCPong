@@ -85,16 +85,16 @@ app.post('/m', function (req, res) {
 	//have to figure out way of getting all users and stuff without callbacks
 	//but until then...
 	var user = new User();
-	user.findUser({username: req.params.wuser, password: req.params.wpass}, function(e, u) {
+	user.findUser({username: req.body.wuser}, function(e, u) {
 		if(e) {//implement error handling with 401s and stuff....
 		}
 		else {
-			user.update({username: req.params.wuser}, true, function(u) {});
-			user.findUser({username: req.params.luser, password: req.params.lpass}, function(le, lu) {
+			user.update({username: req.body.wuser}, true, function(u) {});
+			user.findUser({username: req.body.luser}, function(le, lu) {
 				if(e) {//implement error handling with 401s and stuff....
 				}
 				else {
-					user.update({username: req.params.luser}, false, function(u) {});
+					user.update({username: req.body.luser}, false, function(u) {});
 					var match = new Match();
 					match.save({
 						winUser: u.name,
