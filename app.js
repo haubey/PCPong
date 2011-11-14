@@ -104,6 +104,7 @@ app.post('/m', function (req, res) {
 			})
 		}
 	});
+	res.send("Awesomesauce");
 });
 
 app.listen(process.env.PORT || 3000);

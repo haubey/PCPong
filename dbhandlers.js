@@ -50,6 +50,7 @@ UserProvider.prototype.findById = function(id, callback) {
 
 UserProvider.prototype.update = function(params,win, callback) {
 	User.findOne(params, function(err, user) {
+		console.log(user);
 		if(!err) {
 			if(win) {
 				user.wins++;
