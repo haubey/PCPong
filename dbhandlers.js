@@ -45,9 +45,8 @@ var Match = new Schema({
     loser: String,
     date: {
         type: String,
-    		default:
-        	Date.getDate() + "/" + Date.getMonth()+1 + "/" + Date.getFullYear(),
-        index: 1
+    		default: Date.now,
+        index: -1
     }
 });
 
