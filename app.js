@@ -97,7 +97,7 @@ app.post('/m', function (req, res) {
 					user.update({username: req.body.luser}, false, function(u) {});
 					var match = new Match();
 					match.save({
-						winUser: u.name,
+						winName: u.name,
 						loseName: lu.name
 					}, function() {
 						res.send("Awesomesauce");
