@@ -99,6 +99,8 @@ app.post('/m', function (req, res) {
 					match.save({
 						winUser: u.name,
 						loseName: lu.name
+					}, function() {
+						res.send("Awesomesauce");
 					});
 				}
 			})
