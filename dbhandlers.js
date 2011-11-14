@@ -60,10 +60,11 @@ Match = mongoose.model('Match', Match);
 UserProvider = function () {};
 
 UserProvider.prototype.findAll = function (callback) {
-    User.find({}, function (err, users) {
-        //users is [user, user2...]
-        callback(err, users)
-    });
+		var query = User.find({});
+		query.sort("points", -1);
+		query.exec(function(err, users) {
+			callback(err, users);
+		});
 };
 
 UserProvider.prototype.findUser = function (params, callback) {
@@ -114,7 +115,9 @@ UserProvider.prototype.save = function (params, callback) {
 //Math Provider now
 MatchProvider = function () {};
 MatchProvider.prototype.findAll = function (callback) {
-    Match.find({}, function (err, matches) {
+		var query = Match.find({});
+		query.sort("date", -1);
+    query.exec(function (err, matches) {
         callback(null, matches);
     });
 }
