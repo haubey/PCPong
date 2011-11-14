@@ -71,7 +71,7 @@ body { padding-top: 5%;}
 
 }
 .usr .rank {
-	-webkit-box-flex: 1
+	-webkit-box-flex: 1;
 	text-align: left;
 	padding-left: 10px;
 	margin-top: 15px;
@@ -79,15 +79,24 @@ body { padding-top: 5%;}
 
 .usr .name {
 	font-weight: bold;
-	-webkit-box-flex: 1;
+	-webkit-box-flex: 2;
 	text-align: center;
 	margin-top: 15px;
 	
 }
 
-.usr .record {
-	-webkit-box-flex: 1
+.usr .match {
+	font-weight: bold;
+	-webkit-box-flex: 2;
 	text-align: left;
+	padding-left: 10px;
+	margin-top: 15px;
+	
+}
+
+.usr .record {
+	-webkit-box-flex: 1;
+	text-align: right;
 	padding-right: 10px;
 	margin-top: 15px;
 }
