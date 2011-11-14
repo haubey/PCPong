@@ -44,9 +44,9 @@ var Match = new Schema({
     winner: String,
     loser: String,
     date: {
-        type: Date,
-    default:
-        Date.now,
+        type: String,
+    		default:
+        	Date.getDate() + "/" + Date.getMonth()+1 + "/" + Date.getFullYear(),
         index: 1
     }
 });
@@ -118,6 +118,7 @@ MatchProvider.prototype.findAll = function (callback) {
 		var query = Match.find({});
 		query.sort("date", -1);
     query.exec(function (err, matches) {
+    		console.log(matches[0].date);
         callback(null, matches);
     });
 }
