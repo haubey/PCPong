@@ -34,7 +34,7 @@ html(lang="en")
 							.match= match.winner + ' defeated ' + match.loser
 							.record
 								script
-									Date.format(#{match.date}, "m/d/yy"));
+									dateFormat(Date("#{match.date}"), "m/d/yy"));
 				#newmatch.row
 					h2(style="text-align: center") Enter a Match
 					form#newUser
