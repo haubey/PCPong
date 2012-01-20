@@ -34,7 +34,7 @@ html(lang="en")
 							.match= match.winner + ' defeated ' + match.loser
 							.record
 								script
-									$(this).html(Date.format(#{match.date}, "dd/mm/yy"));
+									$(this).parent().html(Date.format(#{match.date}, "dd/mm/yy"));
 				#newmatch.row
 					h2(style="text-align: center") Enter a Match
 					form#newUser
