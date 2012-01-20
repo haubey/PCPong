@@ -10,6 +10,7 @@ html(lang="en")
 		script(src='/javascripts/sha256.js')
 		script(src='/javascripts/ajaxhandler.js')
 		script(src='/javascripts/tabs.js')
+		script(src='/javascripts/dateformatter.js')
 	body
 		.container
 			ul.pills.navi(data-pills="pills")
@@ -31,7 +32,9 @@ html(lang="en")
 					each match in matches
 						.usr
 							.match= match.winner + ' defeated ' + match.loser
-							.record #{match.date}
+							.record
+								script
+									$(this).html(Date.format(#{match.date}, "dd/mm/yy"));
 				#newmatch.row
 					h2(style="text-align: center") Enter a Match
 					form#newUser
