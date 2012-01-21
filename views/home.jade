@@ -64,7 +64,7 @@ html(lang="en")
 					| &copy; Haubey Apps 2011
 		script
 			$('.pills').pills();
-			$(".record").each(function() {
+			$("#matches").find(".record").each(function() {
 				var d = $(this).attr("data-date");
 				$(this).html(dateFormat(d, "m/d/yy"));
 			});
