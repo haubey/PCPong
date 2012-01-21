@@ -32,10 +32,7 @@ html(lang="en")
 					each match in matches
 						.usr
 							.match= match.winner + ' defeated ' + match.loser
-							.record
-								script
-									$(this).parent(".record").html(dateFormat(Date("#{match.date}"), "m/d/yy"));
-									console.log($(this));
+							.record(data-date="#{match.date}")
 				#newmatch.row
 					h2(style="text-align: center") Enter a Match
 					form#newUser
@@ -67,3 +64,6 @@ html(lang="en")
 					| &copy; Haubey Apps 2011
 		script
 			$('.pills').pills();
+			$(".records").each(function() {
+				$(this).html($(this).attr("data-date"));
+			});
