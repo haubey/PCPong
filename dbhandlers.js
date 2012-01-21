@@ -17,7 +17,7 @@ var User = new Schema({
         validate: [validate, 'Plase enter a Password']
     },
     wins: {
-        type: Number,
+    type: Number,
     default:
         0
     },
@@ -117,18 +117,18 @@ MatchProvider.prototype.findAll = function (callback) {
 		var query = Match.find({});
 		query.sort("date", -1);
     query.exec(function (err, matches) {
-    		console.log(matches[0].date);
+    		//console.log(matches[0].date);
         callback(null, matches);
     });
 }
 
 MatchProvider.prototype.save = function (params, callback) {
 		var d = new Date();
-		var m = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+		//var m = new Date(d.getFullYear(), d.getMonth(), d.getDate());
 		var match = new Match({
         winner: params.winName,
         loser: params.loseName,
-        date: m
+        date: d
     });
     match.save(function (err) {
         callback();
