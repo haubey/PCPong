@@ -26,6 +26,7 @@ $(document).ready(function() {
 				lpass: sha256_digest(sha256_digest($('#lpass').val()))
 			},
 			success: function() {alert("Hello");},
+			failure: function() {alert("OH NOES");}
 		});
 	});
 });
