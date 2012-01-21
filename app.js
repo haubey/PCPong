@@ -2,6 +2,7 @@ var express = require('express'),
     routes = require('./routes'),
     User = require('./dbhandlers').UserProvider,
     Match = require('./dbhandlers').MatchProvider;
+    dFormat = require('./dateFormat');
 
 var app = module.exports = express.createServer();
 
