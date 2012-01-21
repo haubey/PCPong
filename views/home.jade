@@ -35,6 +35,7 @@ html(lang="en")
 							.record
 								script
 									$(this).parent(".record").html(dateFormat(Date("#{match.date}"), "m/d/yy"));
+									console.log($(this));
 				#newmatch.row
 					h2(style="text-align: center") Enter a Match
 					form#newUser
