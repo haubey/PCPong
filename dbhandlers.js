@@ -124,7 +124,7 @@ MatchProvider.prototype.findAll = function (callback) {
 
 MatchProvider.prototype.save = function (params, callback) {
 		var d = new Date();
-		var m = new Date(d.getFullYear(), d.getMonth(), d.getDate);
+		var m = new Date(d.getFullYear(), d.getMonth(), d.getDate());
 		var match = new Match({
         winner: params.winName,
         loser: params.loseName,
