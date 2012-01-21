@@ -65,5 +65,5 @@ html(lang="en")
 		script
 			$('.pills').pills();
 			$(".record").each(function() {
-				$(this).html($(this).attr("data-date"));
+				$(this).html(dateFormat(Date($(this).attr("data-date")), "m/d/yy"));
 			});
