@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGOLAB_URI); //"mongodb://heroku_app1738240:998urnbp6clj8im226t6e1236s@dbh74.mongolab.com:27747/heroku_app1738240");
+mongoose.connect(process.env.MONGOLAB_URI);
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 

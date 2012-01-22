@@ -28,6 +28,9 @@ html(lang="en")
 								.rank= i+1
 								.name= user.name
 								.record #{user.wins}-#{user.losses}
+					a(href="u/new")
+						.usr.new
+							.name Add User
 				#matches 
 					each match in matches
 						.usr
