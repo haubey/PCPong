@@ -141,11 +141,10 @@ app.post('/m', function (req, res) {
                             "message": "Match made"
                         }, 200);
                     });
-                });
-            }
-        })
-    }
-});
+                };
+            })
+        }
+    })
 });
 
 app.listen(process.env.PORT || 3000);
