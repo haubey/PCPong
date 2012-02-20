@@ -7,7 +7,8 @@ var app = module.exports = express.createServer();
 
 
 app.configure(
-	function () {
+
+function () {
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     app.use(express.bodyParser());
@@ -32,17 +33,17 @@ app.configure('production', function () {
 
 
 app.get('/', function (req, res) {
-  var user = new User();
-  var match = new Match();
- 	user.findAll(function(err, users) {
- 		match.findAll(function(er, matches) {
-  		res.render('home', {
-    		layout: false,
-      	users: users,
-    		matches: matches
-   		});
-		});
-	});
+    var user = new User();
+    var match = new Match();
+    user.findAll(function (err, users) {
+        match.findAll(function (er, matches) {
+            res.render('home', {
+                layout: false,
+                users: users,
+                matches: matches
+            });
+        });
+    });
 });
 
 
@@ -59,53 +60,92 @@ app.get('/u/new', function (req, res) {
 });
 
 app.post('/u/new', function (req, res) {
-    console.log(req.body.pass);
+    var isFilled = true;
+    if (req.body.name == "" || req.body.user == "" || req.body.pass == "") {
+        isFilled = false;
+    }
     var user = new User();
-    if(req.body.masspass == "bedspread") {
-    user.save({
-        name: req.body.name,
-        username: req.body.user,
-        password: req.body.pass,
-        email: req.body.email
-    }, function () {
-        res.send("Awesomesauce");
-    });
+    if (req.body.masspass == "bedspread" && isFilled) {
+        user.save({
+            name: req.body.name,
+            username: req.body.user,
+            password: req.body.pass,
+            email: req.body.email
+        }, function (err) {
+            if (err) {
+                res.json({
+                    "error": 1,
+                    "message": "Something went wrong"
+                }, 500);
+            } else {
+                res.json({
+                    "error": 0,
+                    "message": "User created"
+                }, 200);
+            }
+        });
+    } else {
+        res.json({
+            "error": 1,
+            "message": "Oops, looks like your form isn't completely filled out!"
+        }, 403);
     }
 });
 
-app.get('/u/:un', function(req, res) {
-	var user = new User();
-	user.findUser({username: req.params.un}, function(er, user) {
-		res.send(JSON.stringify(user));
-	});
+app.get('/u/:un', function (req, res) {
+    var user = new User();
+    user.findUser({
+        username: req.params.un
+    }, function (er, user) {
+        res.send("Nothing to see here (yet)");
+    });
 
 });
 
 app.post('/m', function (req, res) {
-	//have to figure out way of getting all users and stuff without callbacks
-	//but until then...
-	var user = new User();
-	user.findUser({username: req.body.wuser}, function(e, u) {
-		if(e) {//implement error handling with 401s and stuff....
-		}
-		else {
-			user.update({username: req.body.wuser}, true, function(u) {});
-			user.findUser({username: req.body.luser}, function(le, lu) {
-				if(e) {//implement error handling with 401s and stuff....
-				}
-				else {
-					user.update({username: req.body.luser}, false, function(u) {});
-					var match = new Match();
-					match.save({
-						winName: u.name,
-						loseName: lu.name
-					}, function() {
-						res.send("Awesomesauce");
-					});
-				}
-			})
-		}
-	});
+    //have to figure out way of getting all users and stuff without callbacks
+    //but until then...
+    var user = new User();
+    user.findUser({
+        username: req.body.wuser
+    }, function (e, u) {
+        if (e) {
+            res.json({
+                "error": 1,
+                "message": "Wining user not found!"
+            }, 404);
+            return;
+        } else {
+            user.update({
+                username: req.body.wuser
+            }, true, function (u) {});
+            user.findUser({
+                username: req.body.luser
+            }, function (le, lu) {
+                if (e) {
+                    res.json({
+                        "error": 1,
+                        "message": "Loosing user not found!"
+                    }, 404);
+                } else {
+                    user.update({
+                        username: req.body.luser
+                    }, false, function (u) {});
+                    var match = new Match();
+                    match.save({
+                        winName: u.name,
+                        loseName: lu.name
+                    }, function () {
+                        res.json({
+                            "error": 0,
+                            "message": "Match made"
+                        }, 200);
+                    });
+                });
+            }
+        })
+    }
+});
 });
 
 app.listen(process.env.PORT || 3000);

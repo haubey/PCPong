@@ -1,7 +1,8 @@
 $(document).ready(function() {
+	$("#successHandler").hide();
 	$("#createUser").click(function() {
+		$("#successHandler").hide();
 		var pw = sha256_digest(sha256_digest($('#pass').val()));
-		console.log(pw);
 		$.ajax({
 			type: 'POST',
 			url: '/u/new/',
@@ -10,12 +11,21 @@ $(document).ready(function() {
 				name: $('#name').val(),
 				user: $('#user').val(),
 				email: $('#email').val(),
-				masspass: $('#masspass').val()
+				masspass: sha256_digest($('#masspass').val())
 			},
-			success: function() {alert("Hello");},
+			success: function() {
+				$("#successHandler").attr("class", "alert-message .block-message .success");
+				$("#successHandler").text("User created!! Woohoo!");
+				$("#successHandler").show();
+			},
+			failure: function(err) {
+				$("#successHandler").attr("class", "alert-message .block-message .error");
+				$("#successHandler").text(err.message);
+				$("#successHandler").show();
 		});
 	});
 	$("#enterMatch").click(function() {
+		$("#successHandler").hide();
 		$.ajax({
 			type: 'POST',
 			url: '/m',
@@ -25,8 +35,16 @@ $(document).ready(function() {
 				luser: $('#luser').val(),
 				lpass: sha256_digest(sha256_digest($('#lpass').val()))
 			},
-			success: function() {alert("Hello");},
-			failure: function() {alert("OH NOES");}
+			success: function() {
+				$("#successHandler").attr("class", "alert-message .block-message .success");
+				$("#successHandler").text("Match created!! Woohoo!");
+				$("#successHandler").show();
+			},
+			failure: function(err) {
+				$("#successHandler").attr("class", "alert-message .block-message .error");
+				$("#successHandler").text(err.message);
+				$("#successHandler").show();
+			}
 		});
 	});
 });
