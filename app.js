@@ -111,9 +111,10 @@ app.post('/m', function (req, res) {
     async.series([
 
     function (cb) {
+    		var u;
         user.findUser({
             "username": req.body.wuname
-        }, function (err, u) {
+        }, function (err, usr) {
             if (err) {
                 res.json({
                     "error": 1,
@@ -121,9 +122,10 @@ app.post('/m', function (req, res) {
                 }, 500);
                 return;
             }
-            if (u) {
-                if (u.password == req.body.wpass) {
+            if (usr) {
+                if (usr.password == req.body.wpass) {
                     wubool = true;
+                    u = usr;
                 } else {
                     wubool = false;
                     res.json({
@@ -140,8 +142,9 @@ app.post('/m', function (req, res) {
                 return;
             }
         });
-        cb(null, null);
+        cb(null, u);
     }, function (cb) {
+    		var usr;
         user.findUser({
             "username": req.body.luname
         }, function (err, u) {
@@ -154,6 +157,7 @@ app.post('/m', function (req, res) {
             }
             if (u) {
                 if (u.password == req.body.lpass) {
+                		usr = u;
                     lubool = true;
                 } else {
                     lubool = false;
@@ -170,7 +174,7 @@ app.post('/m', function (req, res) {
                 return;
             }
         });
-        cb(null, null);
+        cb(null, usr);
     }],
 
     function (err, results) {
@@ -182,8 +186,8 @@ app.post('/m', function (req, res) {
         }, false, function (u) {});
         var match = new Match();
         match.save({
-            winName: u.name,
-            loseName: lu.name
+            winName: results[0].name,
+            loseName: results[1].name
         }, function () {
             res.json({
                 "error": 0,
