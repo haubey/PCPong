@@ -106,7 +106,90 @@ app.post('/m', function (req, res) {
     //have to figure out way of getting all users and stuff without callbacks
     //but until then...
     var user = new User();
-    user.findUser({
+    var wubool, lubool;
+    async.series([
+
+    function (cb) {
+        user.findUser({
+            "username": req.body.wuname
+        }, function (err, u) {
+            if (err) {
+                res.json({
+                    "error": 1,
+                    "message": "Internal server error"
+                }, 500);
+                return;
+            }
+            if (u) {
+                if (u.password == req.body.wpass) {
+                    wubool = true;
+                } else {
+                    wubool = false;
+                    res.json({
+                        "error": 1,
+                        "message": "Winning user password not correct!"
+                    }, 403);
+                    return;
+                }
+            } else {
+                res.json({
+                    "error": 1,
+                    "message": "Winning user not found!"
+                }, 404);
+                return;
+            }
+        });
+        cb(null, null);
+    }, function (cb) {
+        user.findUser({
+            "username": req.body.luname
+        }, function (err, u) {
+            if (err) {
+                res.json({
+                    "error": 1,
+                    "message": "Internal server error"
+                }, 500);
+                return;
+            }
+            if (u) {
+                if (u.password == req.body.lpass) {
+                    lubool = true;
+                } else {
+                    lubool = false;
+                    res.json({
+                        "error": 1,
+                        "message": "Losing user password not correct!"
+                    }, 403);
+                }
+            } else {
+                res.json({
+                    "error": 1,
+                    "message": "Winning user not found!"
+                }, 404);
+                return;
+            }
+        });
+    }]);
+
+    function (err, results) {
+        user.update({
+            username: req.body.wuser
+        }, true, function (u) {});
+        user.update({
+            username: req.body.luser
+        }, false, function (u) {});
+        var match = new Match();
+        match.save({
+            winName: u.name,
+            loseName: lu.name
+        }, function () {
+            res.json({
+                "error": 0,
+                "message": "Match made"
+            }, 200);
+        });
+    };
+    /* user.findUser({
         username: req.body.wuser
     }, function (e, u) {
     		console.log(e);
@@ -146,7 +229,7 @@ app.post('/m', function (req, res) {
                 };
             })
         }
-    })
+    }) */
 });
 
 app.listen(process.env.PORT || 3000);
