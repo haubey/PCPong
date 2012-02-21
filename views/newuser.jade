@@ -37,6 +37,7 @@ html(lang="en")
 						}
 					},
 					error: function(err) {
+						console.log(err);
 						$("#successHandler").attr("class", "alert-message error");
 						$("#successHandler").text(err.message);
 						$("#successHandler").show();
