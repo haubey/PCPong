@@ -190,7 +190,7 @@ app.post('/m', function (req, res) {
                 "message": "Match made"
             }, 200);
         });
-    };
+    }
     );
     /* user.findUser({
         username: req.body.wuser
