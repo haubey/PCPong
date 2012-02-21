@@ -11,16 +11,16 @@ $(document).ready(function() {
 				name: $('#name').val(),
 				user: $('#user').val(),
 				email: $('#email').val(),
-				masspass: sha256_digest($('#masspass').val())
+				masspass: $('#masspass').val()
 			},
 			success: function(res) {
 				console.log(res);
-				$("#successHandler").attr("class", "alert-message .block-message .success");
+				$("#successHandler").attr("class", ".alert-message .block-message .success");
 				$("#successHandler").text("User created!! Woohoo!");
 				$("#successHandler").show();
 			},
 			error: function(err) {
-				$("#successHandler").attr("class", "alert-message .block-message .error");
+				$("#successHandler").attr("class", ".alert-message .block-message .error");
 				$("#successHandler").text("Oops, looks like something went wrong! Please try again");
 				$("#successHandler").show();
 		}});
@@ -37,12 +37,12 @@ $(document).ready(function() {
 				lpass: sha256_digest(sha256_digest($('#lpass').val()))
 			},
 			success: function() {
-				$("#successHandler").attr("class", "alert-message .block-message .success");
+				$("#successHandler").attr("class", ".alert-message .block-message .success");
 				$("#successHandler").text("Match created!! Woohoo!");
 				$("#successHandler").show();
 			},
 			failure: function(err) {
-				$("#successHandler").attr("class", "alert-message .block-message .error");
+				$("#successHandler").attr("class", ".alert-message .block-message .error");
 				$("#successHandler").text("Oops, looks like something went wrong! Please try again");
 				$("#successHandler").show();
 			}
