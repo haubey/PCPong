@@ -77,7 +77,7 @@ app.post('/u/new', function (req, res) {
                 res.json({
                     "error": 1,
                     "message": "Something went wrong"
-                }, 500);
+                }, 200);
             } else {
                 res.json({
                     "error": 0,
@@ -119,7 +119,7 @@ app.post('/m', function (req, res) {
                 res.json({
                     "error": 1,
                     "message": "Internal server error"
-                }, 500);
+                }, 200);
                 return;
             }
             if (usr) {
@@ -138,7 +138,7 @@ app.post('/m', function (req, res) {
                 res.json({
                     "error": 1,
                     "message": "Winning user not found!"
-                }, 404);
+                }, 200);
                 return;
             }
           cb(null, usr.name);
@@ -153,7 +153,7 @@ app.post('/m', function (req, res) {
                 res.json({
                     "error": 1,
                     "message": "Internal server error"
-                }, 500);
+                }, 200);
                 return;
             }
             if (u) {
@@ -170,7 +170,7 @@ app.post('/m', function (req, res) {
                 res.json({
                     "error": 1,
                     "message": "Losing user not found!"
-                }, 404);
+                }, 200);
                 return;
             }
           cb(null, u.name);
@@ -208,7 +208,7 @@ app.post('/m', function (req, res) {
             res.json({
                 "error": 1,
                 "message": "Wining user not found!"
-            }, 404);
+            }, 200);
             return;
         } else {
             user.update({
@@ -221,7 +221,7 @@ app.post('/m', function (req, res) {
                     res.json({
                         "error": 1,
                         "message": "Losing user not found!"
-                    }, 404);
+                    }, 200);
                 } else {
                     user.update({
                         username: req.body.luser
