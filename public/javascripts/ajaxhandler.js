@@ -16,7 +16,7 @@ $(document).ready(function() {
 			success: function(res) {
 				console.log(res);
 				$("#successHandler").attr("class", ".alert-message .block-message .success");
-				$("#successHandler").text("User created!! Woohoo!");
+				$("#successHandler").find("p").text("User created!! Woohoo!");
 				$("#successHandler").show();
 			},
 			error: function(err) {
@@ -38,12 +38,12 @@ $(document).ready(function() {
 			},
 			success: function() {
 				$("#successHandler").attr("class", ".alert-message .block-message .success");
-				$("#successHandler").text("Match created!! Woohoo!");
+				$("#successHandler").find("p").text("Match created!! Woohoo!");
 				$("#successHandler").show();
 			},
 			failure: function(err) {
 				$("#successHandler").attr("class", ".alert-message .block-message .error");
-				$("#successHandler").text("Oops, looks like something went wrong! Please try again");
+				$("#successHandler").find("p").text("Oops, looks like something went wrong! Please try again");
 				$("#successHandler").show();
 			}
 		});

@@ -169,7 +169,7 @@ app.post('/m', function (req, res) {
             } else {
                 res.json({
                     "error": 1,
-                    "message": "Winning user not found!"
+                    "message": "Losing user not found!"
                 }, 404);
                 return;
             }
