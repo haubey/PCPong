@@ -89,7 +89,7 @@ app.post('/u/new', function (req, res) {
         res.json({
             "error": 1,
             "message": "Oops, looks like your form isn't completely filled out!"
-        }, 403);
+        }, 200);
     }
 });
 
@@ -130,7 +130,7 @@ app.post('/m', function (req, res) {
                     res.json({
                         "error": 1,
                         "message": "Winning user password not correct!"
-                    }, 403);
+                    }, 200);
                     return;
                 }
             } else {
@@ -164,7 +164,7 @@ app.post('/m', function (req, res) {
                     res.json({
                         "error": 1,
                         "message": "Losing user password not correct!"
-                    }, 403);
+                    }, 200);
                 }
             } else {
                 res.json({
