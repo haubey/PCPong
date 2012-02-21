@@ -26,12 +26,12 @@ html(lang="en")
 					},
 					success: function(res) {
 						console.log(res);
-						$("#successHandler").attr("class", ".alert-message .block-message .success");
+						$("#successHandler").attr("class", "alert-message  success");
 						$("#successHandler").find("p").text("User created!! Woohoo!");
 						$("#successHandler").show();
 					},
 					error: function(err) {
-						$("#successHandler").attr("class", ".alert-message .block-message .error");
+						$("#successHandler").attr("class", "alert-message error");
 						$("#successHandler").text("Oops, looks like something went wrong! Please try again");
 						$("#successHandler").show();
 				}});
@@ -65,6 +65,7 @@ html(lang="en")
 				.clearfix
 					button(id="createUser").btn.primary.large.disabled Create User
 				#successHandler
+					p
 				br
 				.clearfix
 					a(href="/").btn.action.large.disabled Go Home
