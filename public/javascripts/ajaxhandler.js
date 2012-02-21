@@ -23,7 +23,7 @@ $(document).ready(function() {
 				$("#successHandler").attr("class", "alert-message .block-message .error");
 				$("#successHandler").text("Oops, looks like something went wrong! Please try again");
 				$("#successHandler").show();
-		});
+		}});
 	});
 	$("#enterMatch").click(function() {
 		$("#successHandler").hide();
