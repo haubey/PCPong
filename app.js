@@ -134,6 +134,7 @@ app.post('/m', function (req, res) {
                     return;
                 }
             } else {
+            		console.log(usr);
                 res.json({
                     "error": 1,
                     "message": "Winning user not found!"
