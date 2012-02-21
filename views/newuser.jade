@@ -38,7 +38,7 @@ html(lang="en")
 					},
 					error: function(err) {
 						$("#successHandler").attr("class", "alert-message error");
-						$("#successHandler").text("Oops, looks like something went wrong! Please try again");
+						$("#successHandler").text(err.message);
 						$("#successHandler").show();
 				}});
 			});
@@ -47,7 +47,7 @@ html(lang="en")
 		.container
 			.hero-unit
 				h2 Create a new user
-				form#newUser
+				form#newUser(style="margin-bottom: 10px;")
 					.clearfix
 						label(for="user") Username
 						.input
@@ -70,7 +70,6 @@ html(lang="en")
 							input(type="password", name="masspass", id="masspass")
 				.clearfix
 					button(id="createUser").btn.primary.large.disabled Create User
-				br
 				#successHandler
 					p
 				br

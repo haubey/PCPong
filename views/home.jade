@@ -35,7 +35,7 @@ html(lang="en")
 									},
 									error: function(err) {
 										$("#successHandler").attr("class", "alert-message error");
-										$("#successHandler").find("p").text("Oops, looks like something went wrong! Please try again");
+										$("#successHandler").find("p").text(err.message);
 										$("#successHandler").show();
 									}
 								});
