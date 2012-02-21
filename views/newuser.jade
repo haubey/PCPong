@@ -26,9 +26,15 @@ html(lang="en")
 					},
 					success: function(res) {
 						console.log(res);
-						$("#successHandler").attr("class", "alert-message  success");
-						$("#successHandler").find("p").text("User created!! Woohoo!");
+						if(res.error) {
+						$("#successHandler").attr("class", "alert-message error");
+						$("#successHandler").text(res.message);
 						$("#successHandler").show();
+						} else {
+						$("#successHandler").attr("class", "alert-message  success");
+						$("#successHandler").find("p").text(res.message);
+						$("#successHandler").show();
+						}
 					},
 					error: function(err) {
 						$("#successHandler").attr("class", "alert-message error");
@@ -64,6 +70,7 @@ html(lang="en")
 							input(type="password", name="masspass", id="masspass")
 				.clearfix
 					button(id="createUser").btn.primary.large.disabled Create User
+				br
 				#successHandler
 					p
 				br

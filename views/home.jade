@@ -22,13 +22,19 @@ html(lang="en")
 										luser: $('#luser').val(),
 										lpass: sha256_digest(sha256_digest($('#lpass').val()))
 									},
-									success: function() {
-										$("#successHandler").attr("class", ".alert-message .block-message .success");
-										$("#successHandler").find("p").text("Match created!! Woohoo!");
+									success: function(res) {
+										if(res.error) {
+											$("#successHandler").attr("class", "alert-message error");
+											$("#successHandler").find("p").text(res.message);
+											$("#successHandler").show();
+										} else {
+										$("#successHandler").attr("class", "alert-message success");
+										$("#successHandler").find("p").text(res.message);
 										$("#successHandler").show();
+										}
 									},
 									failure: function(err) {
-										$("#successHandler").attr("class", ".alert-message .block-message .error");
+										$("#successHandler").attr("class", "alert-message error");
 										$("#successHandler").find("p").text("Oops, looks like something went wrong! Please try again");
 										$("#successHandler").show();
 									}

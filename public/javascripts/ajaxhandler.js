@@ -1,6 +1,5 @@
 $(document).ready(function() {
-	$("#successHandler").hide();
-	$("#createUser").click(function() {
+$("#createUser").click(function() {
 		$("#successHandler").hide();
 		var pw = sha256_digest(sha256_digest($('#pass').val()));
 		$.ajax({
@@ -25,6 +24,7 @@ $(document).ready(function() {
 				$("#successHandler").show();
 		}});
 	});
+	$("#successHandler").hide();
 	$("#enterMatch").click(function() {
 		$("#successHandler").hide();
 		$.ajax({
