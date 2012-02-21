@@ -124,10 +124,10 @@ app.post('/m', function (req, res) {
             user.findUser({
                 username: req.body.luser
             }, function (le, lu) {
-                if (e) {
+                if (le) {
                     res.json({
                         "error": 1,
-                        "message": "Loosing user not found!"
+                        "message": "Losing user not found!"
                     }, 404);
                 } else {
                     user.update({
