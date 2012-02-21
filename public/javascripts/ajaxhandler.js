@@ -13,14 +13,15 @@ $(document).ready(function() {
 				email: $('#email').val(),
 				masspass: sha256_digest($('#masspass').val())
 			},
-			success: function() {
+			success: function(res) {
+				console.log(res);
 				$("#successHandler").attr("class", "alert-message .block-message .success");
 				$("#successHandler").text("User created!! Woohoo!");
 				$("#successHandler").show();
 			},
-			failure: function(err) {
+			error: function(err) {
 				$("#successHandler").attr("class", "alert-message .block-message .error");
-				$("#successHandler").text(err.message);
+				$("#successHandler").text("Oops, looks like something went wrong! Please try again");
 				$("#successHandler").show();
 		});
 	});
@@ -42,7 +43,7 @@ $(document).ready(function() {
 			},
 			failure: function(err) {
 				$("#successHandler").attr("class", "alert-message .block-message .error");
-				$("#successHandler").text(err.message);
+				$("#successHandler").text("Oops, looks like something went wrong! Please try again");
 				$("#successHandler").show();
 			}
 		});
