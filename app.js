@@ -123,6 +123,7 @@ app.post('/m', function (req, res) {
                 return;
             }
             if (usr) {
+            		console.log("WINNING USER " + usr);
                 if (usr.password == req.body.wpass) {
                     wubool = true;
                     u = usr;
@@ -156,6 +157,7 @@ app.post('/m', function (req, res) {
                 return;
             }
             if (u) {
+            		console.log("LOOSING USER " + u);
                 if (u.password == req.body.lpass) {
                 		usr = u;
                     lubool = true;
@@ -178,6 +180,7 @@ app.post('/m', function (req, res) {
     }],
 
     function (err, results) {
+    		console.log(results);
         user.update({
             username: req.body.wuser
         }, true, function (u) {});
