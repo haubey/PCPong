@@ -68,14 +68,20 @@ UserProvider.prototype.findAll = function (callback) {
 
 UserProvider.prototype.findUser = function (params, callback) {
     User.findOne(params, function (err, user) {
-        callback(null, user);
+  			if(err)
+  				callback(err, null)
+  			else 
+       	 callback(null, user);
     });
 }
 
 UserProvider.prototype.findById = function (id, callback) {
     User.findById(id, function (err, user) {
         //user is a {user}
-        callback(null, user);
+        if(err)
+        	callback(err, null);
+        else
+        	callback(null, user);
     });
 };
 
