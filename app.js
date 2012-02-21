@@ -109,6 +109,8 @@ app.post('/m', function (req, res) {
     user.findUser({
         username: req.body.wuser
     }, function (e, u) {
+    		console.log(e);
+    		console.log(u);
         if (e) {
             res.json({
                 "error": 1,
