@@ -107,7 +107,7 @@ app.post('/m', function (req, res) {
     //have to figure out way of getting all users and stuff without callbacks
     //but until then...
     var user = new User();
-    var wubool, lubool;
+    
     async.series([
 
     function (cb) {
@@ -123,12 +123,10 @@ app.post('/m', function (req, res) {
                 return;
             }
             if (usr) {
-            		console.log("WINNING USER " + usr);
+            	//	console.log("WINNING USER " + usr);
                 if (usr.password == req.body.wpass) {
-                    wubool = true;
                     u = usr;
                 } else {
-                    wubool = false;
                     res.json({
                         "error": 1,
                         "message": "Winning user password not correct!"
@@ -142,9 +140,10 @@ app.post('/m', function (req, res) {
                 }, 404);
                 return;
             }
+          cb(null, usr.name);
         });
-        cb(null, u);
-    }, function (cb) {
+    }, 
+    function (cb) {
     		var usr;
         user.findUser({
             "username": req.body.luname
@@ -160,9 +159,7 @@ app.post('/m', function (req, res) {
             		console.log("LOOSING USER " + u);
                 if (u.password == req.body.lpass) {
                 		usr = u;
-                    lubool = true;
                 } else {
-                    lubool = false;
                     res.json({
                         "error": 1,
                         "message": "Losing user password not correct!"
@@ -175,9 +172,11 @@ app.post('/m', function (req, res) {
                 }, 404);
                 return;
             }
+          cb(null, u.name);
         });
-        cb(null, usr);
-    }],
+
+    }
+    ],
 
     function (err, results) {
     		console.log(results);
@@ -189,8 +188,8 @@ app.post('/m', function (req, res) {
         }, false, function (u) {});
         var match = new Match();
         match.save({
-            winName: results[0].name,
-            loseName: results[1].name
+            winName: results[0],
+            loseName: results[1]
         }, function () {
             res.json({
                 "error": 0,
