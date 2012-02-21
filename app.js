@@ -113,7 +113,7 @@ app.post('/m', function (req, res) {
     function (cb) {
     		var u;
         user.findUser({
-            "username": req.body.wuname
+            username: req.body.wuname
         }, function (err, usr) {
             if (err) {
                 res.json({
@@ -147,7 +147,7 @@ app.post('/m', function (req, res) {
     function (cb) {
     		var usr;
         user.findUser({
-            "username": req.body.luname
+            username: req.body.luname
         }, function (err, u) {
             if (err) {
                 res.json({
