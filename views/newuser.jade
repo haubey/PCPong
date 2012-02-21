@@ -9,6 +9,7 @@ html(lang="en")
 		script(src='/javascripts/sha256.js')
 		script(src='/javascripts/jquery.min.js')
 		script
+			$(document).ready(function() {
 			$("#successHandler").hide();
 			$("#createUser").click(function() {
 				$("#successHandler").hide();
@@ -34,6 +35,7 @@ html(lang="en")
 						$("#successHandler").text("Oops, looks like something went wrong! Please try again");
 						$("#successHandler").show();
 				}});
+			});
 			});
 	body
 		.container
