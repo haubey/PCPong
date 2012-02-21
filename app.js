@@ -1,4 +1,5 @@
 var express = require('express'),
+		async = require('async'),
     routes = require('./routes'),
     User = require('./dbhandlers').UserProvider,
     Match = require('./dbhandlers').MatchProvider;
@@ -169,7 +170,8 @@ app.post('/m', function (req, res) {
                 return;
             }
         });
-    }]);
+        cb(null, null);
+    }],
 
     function (err, results) {
         user.update({
@@ -189,6 +191,7 @@ app.post('/m', function (req, res) {
             }, 200);
         });
     };
+    );
     /* user.findUser({
         username: req.body.wuser
     }, function (e, u) {
