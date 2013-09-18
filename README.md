@@ -1,8 +1,7 @@
-Nothing to see here...yet. I'll update this once I have an actual product going.
-Until then, awesomesause.
+A Ping Pong ranking system, because you know somebody's going to ask who's the best at ping pong.
 
-Requires the following node modules
-   express
-   jade
-   stylus
-   mongoose
+Requires the following node modules:
+   * express
+   * jade
+   * stylus
+   * mongoose
